@@ -8,10 +8,10 @@ function TestComponent() {
   return <h1>{title}</h1>;
 }
 
-// test("renders the test component", () => {
-//   render(<TestComponent />);
-//   expect(screen.getByText("Hello, Test!")).toBeInTheDocument();
-// });
+test("renders the test component", () => {
+  render(<TestComponent />);
+  expect(screen.getByText("Hello, Test!")).toBeInTheDocument();
+});
 
 test("should create the component", () => {
   const { container } = render(<TestComponent />);
