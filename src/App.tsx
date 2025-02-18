@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { renderRoutes, routes } from "@routes/routes";
 import './App.css'
+import { ToastContainer } from 'react-toastify'
+import sun from "@public/sun.svg";
+import moon from "@public//moon.svg";
+import { useTheme } from "./theme/ThemeContext";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { theme, toggleTheme } = useTheme();
+  const themeIcon = theme === "light" ? sun : moon;
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      {/* Boutons d'accessibilité */}
+      <div className="fixed right-6 bottom-6 z-50">
+        {/* Bouton de changement de thème */}
+        <img
+          className="w-9 h-9 p-2 rounded-full border border-gray-500 bg-opacity-75 bg-[var(--background-color)] hover:cursor-pointer transition-transform transform hover:scale-110"
+          src={themeIcon}
+          alt="Switch theme"
+          onClick={toggleTheme}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      {/* Conteneur principal */}
+      <div className="h-[93vh] overflow-auto px-10 pt-16 absolute">
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={theme}
+          className="!mt-[7vh]" // Ajout de marge pour éviter le chevauchement avec le header
+        />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <div>{renderRoutes(routes)}</div>
     </>
   )
 }

@@ -1,42 +1,115 @@
+:root {
+  --primary-color: #6c63ff;
+  --secondary-color: #132540;
+  --tercery-color: #efefef;
+  --background-color: #fff;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+[data-theme="dark"] {
+  --primary-color: #6c63ff;
+  --secondary-color: #efefef;
+  --tercery-color: #fff;
+  --background-color: #132540;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 60px;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body{
+  background-color: var(--background-color);
+
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1,
+h2,
+h3,
+p {
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h1,
+h2 {
+  text-transform: uppercase;
 }
 
-.card {
-  padding: 2em;
+h2,
+h3 {
+  font-size: 20px;
 }
 
-.read-the-docs {
-  color: #888;
+h1 {
+  font-size: 32px;
+  position: relative;
 }
+
+.with-left-underline, .with-center-underline {
+  display: inline-block;
+}
+
+.with-left-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 70%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.with-center-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+h1,
+h2,
+.lang {
+  font-family: "Lilita One", sans-serif;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.colorModeContainer {
+  position: absolute;
+  z-index: 1000;
+}
+
+.colorMode {
+  position: fixed;
+  right: 3%;
+  bottom: 3%;
+  width: 25px;
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--text-color);
+  background-color: var(--background-color);
+}
+
+.colorMode:hover {
+  cursor: pointer;
+}
+
+
+
+/* html, body { height: 100%; width: 100%; } */
+body { margin: 0; font-family: "Poppins", sans-serif; }
