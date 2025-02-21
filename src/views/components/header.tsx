@@ -1,7 +1,7 @@
 
-import logoMain from "../../assets/img/Logo_main_bienvu.png";
+import logoMain from "@public/assets/img/Logo_main_bienvu.png";
 
-console.log("Image importée :", logoMain);
+
 
 // Définition du type pour pagesLinks
 type Link = {
@@ -12,12 +12,15 @@ type Link = {
 
 // Typage des props de Header
 const Header = ({ pagesLinks }: { pagesLinks: Link[] }) => {
+  const logoHeader = logoMain;
+  console.log("Image importée :", logoMain);
   return (
     <header className="fixed top-0 left-1/2 -translate-x-1/2 w-full px-6 py-3">
       <div className="navigation-bar flex items-center justify-between max-w-[1200px] mx-auto">
         {/* Logo */}
         <div className="logo-main">
-          <img src={logoMain || "/fallback.png"} alt="Logo" className="h-10" />
+          <img src="projet" alt="Logo" className="h-10" />
+          {logoHeader}
         </div>
 
         {/* Menu Links */}

@@ -1,8 +1,8 @@
 import { renderRoutes, routes } from "@routes/routes";
 import './App.css'
 import { ToastContainer } from 'react-toastify'
-import sun from "@public/sun.svg";
-import moon from "@public//moon.svg";
+import sun from "@public/assets/img/sun.svg";
+import moon from "@public/assets/img/moon.svg";
 import { useTheme } from "./theme/ThemeContext";
 import Header from "./views/components/header";
 import Footer from "./views/components/footer";
