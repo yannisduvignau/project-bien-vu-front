@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+section{
+  @apply pt-24 px-4 mx-auto lg:px-8 xl:max-w-6xl;
+}
+
+header, footer {
+  @apply mx-auto xl:max-w-6xl;
+}
