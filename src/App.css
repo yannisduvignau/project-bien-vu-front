@@ -113,3 +113,90 @@ p {
 
 /* html, body { height: 100%; width: 100%; } */
 body { margin: 0; font-family: "Poppins", sans-serif; }
+
+
+/* *** GLOBALS *** */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+/* *** TEXTES *** */
+
+.text-light {
+  color: #fff
+}
+
+.text-night {
+  color: #132540;
+}
+
+.text-exerg {
+  color: var(--primary-color);
+}
+
+/* *** BACKGROUND *** */
+
+.bg-purple {
+  background-color: var(--primary-color);
+}
+
+.bg-plain-transp {
+  background-color: #6b63ff60;
+  backdrop-filter: blur(25px)
+}
+
+.bg-plain {
+  background-color: var(--primary-color);
+  border-radius: 35px;
+}
+
+.bg-around {
+  border: 4px solid var(--primary-color);
+  border-radius: 35px;
+  padding: 25px;
+}
+
+.bg-dot {
+  background-color: var(--primary-color);
+  border-radius: 100px;
+  color: #fff;
+}
+
+/* *** Navigation *** */
+
+nav li a {
+  display: inline-block;
+  color: var(--secondary-color);
+  font-weight: 600;
+  text-transform: capitalize !important;
+  margin: 5px;
+  padding: 5px;
+  transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+nav li a:hover {
+  color: var(--secondary-color);
+  opacity: 0.6;
+  transform: translateY(-5px);
+}
+
+footer nav li a {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: capitalize !important;
+  margin: 5px;
+  padding: 5px;
+  transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+footer nav li a:hover {
+  color: #fefefe;
+  opacity: 0.6;
+  transform: translateY(-5px);
+}
