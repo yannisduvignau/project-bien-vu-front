@@ -1,9 +1,13 @@
 import { renderRoutes, routes } from "@routes/routes";
 import './App.css'
 import { ToastContainer } from 'react-toastify'
-import sun from "@public/sun.svg";
-import moon from "@public//moon.svg";
+import sun from "@public/img/sun.svg";
+import moon from "@public/img/moon.svg";
 import { useTheme } from "./theme/ThemeContext";
+import Header from "./views/components/Header";
+import BackToTop from "./views/components/BackToTop";
+import Footer from "./views/components/Footer";
+import { navLinks } from "./navLinks";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -11,6 +15,7 @@ function App() {
 
   return (
     <>
+    <Header pagesLinks={navLinks} />
       {/* Boutons d'accessibilité */}
       <div className="fixed right-6 bottom-6 z-50">
         {/* Bouton de changement de thème */}
@@ -39,6 +44,8 @@ function App() {
       </div>
 
       <div>{renderRoutes(routes)}</div>
+      <BackToTop />
+      <Footer pagesLinks={navLinks}></Footer>
     </>
   )
 }
