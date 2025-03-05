@@ -4,7 +4,7 @@ import GuideSection from "../views/components/GuideSection";
 const steps: { title: string; description: string }[] = [
   { title: "Copiez", description: "Copiez une annonce immobilière (SeLoger, LeBonCoin, Century21...)" },
   { title: "Sélectionnez", description: "Sélectionnez votre outil BienVu : Analyser / Estimer / Générer" },
-  { title: "Collez", description: 'Collez l\'annonce dans "Déposer l\'annonce ici:"' },
+  { title: "Collez", description: 'Collez l\'annonce dans "Je dépose (copier/coller)"' },
   { title: "Cliquez", description: "Cliquez sur envoyer l'annonce pour traiter votre demande" },
   { title: "Résultat", description: "Tadam ! Le résultat apparaît généré par l'IA" },
 ];

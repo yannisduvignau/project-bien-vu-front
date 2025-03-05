@@ -87,7 +87,7 @@ const Home = memo(() => {
               </div>
               <div className="step-text !pl-3">
                 <h3 className="text-lg font-bold"><span className="text-exerg uppercase">Collez</span> l'annonce immobilière</h3>
-                <p className="text-sm">Dans le champ texte "Déposer l'annonce ici:"</p>
+                <p className="text-sm">Dans le champ texte "Je dépose (copier/coller)"</p>
               </div>
             </div>
 
