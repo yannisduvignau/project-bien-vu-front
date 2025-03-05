@@ -1,37 +1,44 @@
 import { memo } from "react";
+import GuideSection from "../views/components/GuideSection";
 
-const Generation = memo(() => {
+const steps: { title: string; description: string }[] = [
+  { title: "Copiez", description: "Copiez une annonce immobilière (SeLoger, LeBonCoin, Century21...)" },
+  { title: "Sélectionnez", description: "Sélectionnez votre outil BienVu : Analyser / Estimer / Générer" },
+  { title: "Collez", description: 'Collez l\'annonce dans "Déposer l\'annonce ici:"' },
+  { title: "Cliquez", description: "Cliquez sur envoyer l'annonce pour traiter votre demande" },
+  { title: "Résultat", description: "Tadam ! Le résultat apparaît généré par l'IA" },
+];
+
+const Generation: React.FC = memo(() => {
   return (
-    <section className="container mx-auto py-12 px-6 space-y-10">
+    <section className="container mx-auto py-12 px-6 space-y-10 mt-25">
       
       {/* Guide */}
-      <div className="bg-primary text-white text-center py-4 rounded-full">
-        <a href="/guide" className="text-lg font-semibold hover:underline">
-          Voir notre guide de génération d'annonces
-        </a>
-      </div>
+      <GuideSection title="Voir notre guide" steps={steps} />
 
       {/* Générer une annonce */}
-      <div className="p-6 border border-primary">
+      <div className="p-6 bg-around">
         <h2 className="text-2xl font-bold text-primary mb-4">
           Je <span style={{ color: "var(--primary-color)" }}>génère</span> une annonce
         </h2>
         <textarea
-          className="w-full p-4 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full text-classic p-4 mt-8 bg-plain-transp bg-around outline-none placeholder-secondary"
           rows={6}
-          placeholder="Décrivez votre bien immobilier ici..."
+          placeholder="Je dépose (copier/coller) l'annonce ici..."
         ></textarea>
-        <button className="mt-4 bg-primary text-white py-2 px-6 rounded-lg hover:bg-opacity-80 transition">
+
+
+        <button className="mt-5 bg-primary text-light bold bg-plain py-5 px-8 my-5 hover:bg-opacity-80 transition tracking-[0.15em]">
           Générer
         </button>
       </div>
 
       {/* Résultat de la génération */}
-      <div className="p-6 border border-primary">
+      <div className="p-6 bg-around">
         <h2 className="text-2xl font-bold text-primary mb-4">
           Le <span style={{ color: "var(--primary-color)" }}>résultat</span> de la génération
         </h2>
-        <div className="bg-white p-4 rounded-lg min-h-[150px] flex items-center justify-center text-gray-500">
+        <div className="text-classic b-around px-6 py-4 min-h-[150px] flex items-center justify-start mt-8 bg-plain-transp">
           L'annonce générée apparaîtra ici...
         </div>
       </div>
