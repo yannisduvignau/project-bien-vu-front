@@ -1,28 +1,26 @@
 import { memo } from "react";
 import "../index.css";
+import AnimatedText from "../views/components/AnimatedText";
 
 const Home = memo(() => {
   return (
     <>
     <section className="entry px-5">
       <div className="container mt-50 mb-30">
-        <h1 className="with-left-underline text-left !text-5xl !mb-25"><span className="text-exerg">BienVu</span> votre outil d'annonce immobilière</h1>
+
+        <h1 className="with-left-underline text-left !text-5xl !mb-25">
+          <span className="text-exerg">BienVu</span> votre outil d'annonce immobilière
+        </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-items-center gap-4">
           
-          {/* Première colonne avec espacement entre les spans */}
-          <div className="col mb-10 w-full text-left">
-            <p className="flex flex-col space-y-4">  {/* Ajout de `space-y-4` pour gérer l'interligne */}
-              <span className="uppercase bold text-6xl self-start">Analyser</span>
-              <span className="uppercase bold text-6xl self-center">estimer</span>
-              <span className="uppercase bold text-6xl self-end">générer</span>
-            </p>
-          </div>
+            <AnimatedText />
 
-          {/* Deuxième colonne (centrée horizontalement et verticalement) */}
-          <div className="col mb-10 w-full flex items-center justify-center text-center">
-              <p className="bold !text-2xl">des <span className="text-exerg text-4xl">annonces immobilières</span> !</p>
-          </div>
+            <div className="col mb-10 w-full flex items-center justify-center text-center">
+              <p className="bold !text-2xl">
+                des <span className="text-exerg text-4xl">annonces immobilières</span> !
+              </p>
+            </div>
 
         </div>
       </div>
@@ -87,7 +85,7 @@ const Home = memo(() => {
               </div>
               <div className="step-text !pl-3">
                 <h3 className="text-lg font-bold"><span className="text-exerg uppercase">Collez</span> l'annonce immobilière</h3>
-                <p className="text-sm">Dans le champ texte "Déposer l'annonce ici:"</p>
+                <p className="text-sm">Dans le champ texte "Je dépose (copier/coller)"</p>
               </div>
             </div>
 

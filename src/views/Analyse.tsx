@@ -1,33 +1,40 @@
 import { memo } from "react";
+import GuideSection from "../views/components/GuideSection";
 
-const Analyse = memo(() => {
+const steps: { title: string; description: string }[] = [
+  { title: "Copiez", description: "Copiez une annonce immobilière (SeLoger, LeBonCoin, Century21...)" },
+  { title: "Sélectionnez", description: "Sélectionnez votre outil BienVu : Analyser / Estimer / Générer" },
+  { title: "Collez", description: 'Collez l\'annonce dans "Je dépose (copier/coller)"' },
+  { title: "Cliquez", description: "Cliquez sur envoyer l'annonce pour traiter votre demande" },
+  { title: "Résultat", description: "Tadam ! Le résultat apparaît généré par l'IA" },
+];
+
+const Analyse: React.FC = memo(() => {
   return (
-    <section className="container mx-auto py-12 px-6 space-y-10">
+    <section className="container mx-auto py-12 px-6 space-y-10 mt-25">
       
-      {/* 1️⃣ Voir notre guide */}
-      <div className="bg-primary text-white text-center py-4 rounded-lg shadow-md">
-        <a href="/guide" className="text-lg font-semibold hover:underline">
-          📖 Voir notre guide d'analyse
-        </a>
-      </div>
+      {/* Guide */}
+      <GuideSection title="Voir notre guide" steps={steps} />
 
-      {/* 2️⃣ J'analyse l'annonce */}
-      <div className="p-6 border rounded-lg shadow-md bg-white">
-        <h2 className="text-2xl font-bold text-primary mb-4">J'analyse l'annonce</h2>
+      {/* Annonce à analyser */}
+      <div className="p-6 border bg-around">
+        <h2 className="text-2xl font-bold text-primary mb-4">
+          J'<span style={{ color: "var(--primary-color)" }}>analyse</span> l'annonce
+        </h2>
         <textarea
-          className="w-full p-4 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full text-classic p-4 mt-8 bg-plain-transp bg-around outline-none placeholder-secondary"
           rows={6}
           placeholder="Je dépose (copier/coller) l'annonce ici..."
         ></textarea>
-        <button className="mt-4 bg-primary text-white py-2 px-6 rounded-lg hover:bg-opacity-80 transition">
+        <button className="mt-5 bg-primary text-light bold bg-plain py-5 px-8 my-5 hover:bg-opacity-80 transition tracking-[0.15em]">
           Analyser
         </button>
       </div>
 
-      {/* 3️⃣ Le résultat de l'analyse */}
-      <div className="p-6 border rounded-lg shadow-md bg-gray-100">
-        <h2 className="text-2xl font-bold text-primary mb-4">Le résultat de l'analyse</h2>
-        <div className="bg-white p-4 rounded-lg min-h-[150px] flex items-center justify-center text-gray-500">
+      {/* Le résultat de l'analyse */}
+      <div className="p-6 border bg-around ">
+        <h2 className="text-2xl font-bold text-primary mb-4">Le <span style={{ color: "var(--primary-color)" }}>résultat</span> de l'analyse</h2>
+        <div className="text-classic b-around px-6 py-4 min-h-[150px] flex items-center justify-start mt-8 bg-plain-transp">
            Le résultat apparaîtra ici...
         </div>
       </div>

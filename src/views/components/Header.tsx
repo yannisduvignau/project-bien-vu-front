@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ pagesLinks }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Détecte le scroll et met à jour l'état
+  // Scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -39,12 +39,10 @@ const Header: React.FC<HeaderProps> = ({ pagesLinks }) => {
       }`}
     >
       <div className="relative max-w-[1200px] mx-auto flex items-center justify-between">
-        {/* Logo à gauche */}
         <Link to="/" className="logo-main">
           <img src={logoMain} alt="Logo" className="h-20" />
         </Link>
 
-        {/* Menu Desktop : liens centrés */}
         <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
           <ul className="flex gap-6">
             {pagesLinks.map((link) => (
@@ -57,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ pagesLinks }) => {
           </ul>
         </nav>
 
-        {/* Icône du menu mobile : à droite */}
+        {/* Menu mobile */}
         <div className="md:hidden">
           <button onClick={toggleMobileMenu}>
             <img src={menuIcon} alt="Menu" className="h-8 w-8" />
@@ -65,7 +63,6 @@ const Header: React.FC<HeaderProps> = ({ pagesLinks }) => {
         </div>
       </div>
 
-      {/* Menu déroulant mobile */}
       {isMobileMenuOpen && (
         <nav className="md:hidden">
           <ul className="flex flex-col gap-4 p-4">
