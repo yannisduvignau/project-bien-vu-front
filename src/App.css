@@ -80,7 +80,7 @@ h1 {
 
 h1,
 h2,
-.lang {
+.lang, .number, .separateur {
   font-family: "Lilita One", sans-serif;
 }
 

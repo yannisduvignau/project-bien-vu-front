@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ pagesLinks }) => {
           </Link>
           
           <p className="text-sm text-light">
-            Créé par <span className="bold">Yannis Duvigneau <span className="text-night">&</span> Paul Blanchon</span>
+            Créé par <span className="bold">Yannis Duvignau <span className="text-night">&</span> Paul Blanchon</span>
           </p>
         </div>
 

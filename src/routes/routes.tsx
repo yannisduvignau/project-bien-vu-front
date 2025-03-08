@@ -1,11 +1,15 @@
 import { Route, Routes } from "react-router-dom"; // Importation de BrowserRouter
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { IRoute } from "@interfaces/types";
+// import { postAnalyse } from "@src/api/ia/analyseService";
+// import { postEstimation } from "@src/api/ia/estimationService";
+// import { postGeneration } from "@src/api/ia/generationService";
 
 // Chargement dynamique des composants
 const Analyse = lazy(() => import("@views/Analyse"));
 const Estimation = lazy(() => import("@views/Estimation"));
 const Generation = lazy(() => import("@views/Generation"));
+// const Traitements = lazy(() => import("@views/Traitements"));
 const Home = lazy(() => import("@views/Home"));
 const NotFound = lazy(() => import("@views/NotFound"));
 
@@ -14,6 +18,9 @@ export const routes: IRoute[] = [
   { path: "/analyse", element: <Analyse /> },
   { path: "/estimation", element: <Estimation /> },
   { path: "/generation", element: <Generation /> },
+  // { path: "/analyse", element: <Traitements handleTraitement={postAnalyse} title="Analyser l'annonce" buttonTitle="Analyser" resultTitle="Résultat de l'analyse"/> },
+  // { path: "/estimation", element: <Traitements handleTraitement={postEstimation} title="Estimation de l'annonce" buttonTitle="Estimer" resultTitle="Résultat de l'estimation"/> },
+  // { path: "/generation", element: <Traitements handleTraitement={postGeneration} title="Génération d'une annonce" buttonTitle="Générer" resultTitle="Résultat de la génération"/> },
   { path: "*", element: <NotFound /> },
 ];
 

@@ -1,26 +1,20 @@
-import { postEstimation } from "@src/api/ia/estimationService";
-import { useAssistant } from "@src/hooks/assistant/AssistantContext";
 import { memo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 interface FormData {
-  text: string;
+    description: string;
 }
 
-const Estimation = memo(() => {
+interface TraitementsProps {
+  handleTraitement: (data: Record<string, unknown>) => Promise<unknown>;
+  title: string;
+  buttonTitle: string;
+  resultTitle: string;
+}
+
+const Traitements = memo(({ handleTraitement, title, buttonTitle, resultTitle }: TraitementsProps) => {
   const [result, setResult] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const { handleResizeAssistant, handleChangeBulleText } = useAssistant();
-
-  handleResizeAssistant(
-    "50vh",
-    "50vh",
-    [1, -0.1, 2],
-    30,
-    "right-8",
-    "bottom-10"
-  );
-  handleChangeBulleText("🚀 Estime la valeur de tes biens ici ! 🚀");
 
   const {
     handleSubmit,
@@ -29,18 +23,21 @@ const Estimation = memo(() => {
     reset,
   } = useForm<FormData>({
     defaultValues: {
-      text: "",
+        description: "",
     },
   });
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
+    const formattedData = {
+        ...data
+    }
     try {
-      const response = await postEstimation(data.text);
-      setResult(response.data.result); // Supposons que l'API renvoie un champ "result"
+      const response = await handleTraitement(formattedData);
+      setResult((response as { analysis: string }).analysis);
       reset();
     } catch (error) {
-      console.error("Erreur lors de l'analyse:", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -49,20 +46,18 @@ const Estimation = memo(() => {
   return (
     <>
       {loading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-20">
           <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
         </div>
       )}
       <section className="container mx-auto py-12 px-6 space-y-10 mt-36">
-        {/* Annonce à estimer */}
-        <div className="p-6 border border-primary">
+        <div className="p-6 border rounded-lg shadow-md bg-white">
           <h2 className="text-2xl font-bold text-primary mb-4">
-            J'<span style={{ color: "var(--primary-color)" }}>estime</span>{" "}
-            l'annonce
+            {title}
           </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name="text"
+              name="description"
               control={control}
               rules={{ required: "Ce champ est requis" }}
               render={({ field }) => (
@@ -74,23 +69,22 @@ const Estimation = memo(() => {
                 />
               )}
             />
-            {errors.text && (
-              <p className="text-red-500 text-sm">{errors.text.message}</p>
+            {errors.description && (
+              <p className="text-red-500 text-sm">{errors.description.message}</p>
             )}
             <button
               type="submit"
               className="btn btn-secondary w-fit flex items-center !mt-8"
             >
-              <p className="text-light">Estimer</p>
+              <p className="text-light">{buttonTitle}</p>
             </button>
           </form>
         </div>
 
-        {/* Résultat de l'estimation */}
-        <div className="p-6 border border-primary">
+        {/* 3️⃣ Le résultat de l'analyse */}
+        <div className="p-6 border rounded-lg shadow-md bg-gray-100">
           <h2 className="text-2xl font-bold text-primary mb-4">
-            Le <span style={{ color: "var(--primary-color)" }}>résultat</span>{" "}
-            de l'estimation
+            {resultTitle}
           </h2>
           <div className="bg-white p-4 rounded-lg min-h-[150px] flex items-center justify-center text-gray-500">
             {result || "Le résultat apparaîtra ici..."}
@@ -101,4 +95,4 @@ const Estimation = memo(() => {
   );
 });
 
-export default Estimation;
+export default Traitements;
