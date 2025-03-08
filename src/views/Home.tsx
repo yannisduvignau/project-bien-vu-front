@@ -10,14 +10,14 @@ const Home = memo(() => {
   const { handleResizeAssistant, handleChangeBulleText } = useAssistant();
 
   handleResizeAssistant(
-    "50vh",
-    "50vh",
-    [1, -0.1, 2],
-    30,
-    "right-8",
-    "bottom-10"
+    "15vh",
+    "15vh",
+    [0.8, -0.3, 1.5],
+    22,
+    "right-6",
+    "bottom-16"
   );
-  handleChangeBulleText("🚀 <strong>Bienvenu sur BienVu</strong> 🚀</br> Avec moi, <a href='/analyse'><strong>analyse</strong></a>, <a href='/estimer'><strong>estime</strong></a> et <a href='/generer'><strong>génére</strong></a> tes annonces immobilières !");
+  handleChangeBulleText("🚀 <strong>Bienvenu sur BienVu</strong> 🚀</br> Avec moi, <a href='/analyse'><strong>analyse</strong></a>, <a href='/estimation'><strong>estime</strong></a> et <a href='/generation'><strong>génére</strong></a> tes annonces immobilières !");
 
   return (
     <>

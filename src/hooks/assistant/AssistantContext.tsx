@@ -37,7 +37,7 @@ const defaultContextValue: AssistantContextType = {
   handleResizeAssistant: () => {},
   handleChangeBulleText: () => {},
   bulleText:
-    "🚀 <strong>Bienvenu sur BienVu</strong> 🚀</br> Avec moi, <a href='/analyse'><strong>analyse</strong></a>, <a href='/estimer'><strong>estime</strong></a> et <a href='/generer'><strong>génére</strong></a> tes annonces immobilières !",
+    "🚀 <strong>Bienvenu sur BienVu</strong> 🚀</br> Avec moi, <a href='/analyse'><strong>analyse</strong></a>, <a href='/estimation'><strong>estime</strong></a> et <a href='/generation'><strong>génére</strong></a> tes annonces immobilières !",
 };
 
 // Créer le contexte

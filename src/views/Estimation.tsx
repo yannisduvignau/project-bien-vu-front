@@ -5,15 +5,37 @@ import { Controller, useForm } from "react-hook-form";
 import GuideSection from "../views/components/GuideSection";
 
 interface FormData {
-  text: string;
+  description: string;
 }
 
-const steps: { title: string; description: string }[] = [
-  { title: "Copiez", description: "Copiez une annonce immobilière (SeLoger, LeBonCoin, Century21...)" },
-  { title: "Sélectionnez", description: "Sélectionnez votre outil BienVu : Analyser / Estimer / Générer" },
-  { title: "Collez", description: 'Collez l\'annonce dans "Je dépose (copier/coller)"' },
-  { title: "Cliquez", description: "Cliquez sur envoyer l'annonce pour traiter votre demande" },
-  { title: "Résultat", description: "Tadam ! Le résultat apparaît généré par l'IA" },
+interface StepsProps {
+  title: string;
+  description: string;
+}
+
+const steps: StepsProps[] = [
+  {
+    title: "Copiez",
+    description:
+      "Copiez une annonce immobilière (SeLoger, LeBonCoin, Century21...)",
+  },
+  {
+    title: "Sélectionnez",
+    description:
+      "Sélectionnez votre outil BienVu : Analyser / Estimer / Générer",
+  },
+  {
+    title: "Collez",
+    description: 'Collez l\'annonce dans "Je dépose (copier/coller)"',
+  },
+  {
+    title: "Cliquez",
+    description: "Cliquez sur envoyer l'annonce pour traiter votre demande",
+  },
+  {
+    title: "Résultat",
+    description: "Tadam ! Le résultat apparaît généré par l'IA",
+  },
 ];
 
 const Estimation = memo(() => {
@@ -22,14 +44,14 @@ const Estimation = memo(() => {
   const { handleResizeAssistant, handleChangeBulleText } = useAssistant();
 
   handleResizeAssistant(
-    "50vh",
-    "50vh",
-    [1, -0.1, 2],
-    30,
-    "right-8",
-    "bottom-10"
+    "15vh",
+    "15vh",
+    [0.8, -0.3, 1.5],
+    22,
+    "right-6",
+    "bottom-16"
   );
-  handleChangeBulleText("🚀 Estime la valeur de tes biens ici ! 🚀");
+  // handleChangeBulleText("🚀 Estime la valeur de tes biens ici ! 🚀");
 
   const {
     handleSubmit,
@@ -38,18 +60,21 @@ const Estimation = memo(() => {
     reset,
   } = useForm<FormData>({
     defaultValues: {
-      text: "",
+      description: "",
     },
   });
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
+    const formattedData = {
+      ...data,
+    };
     try {
-      const response = await postEstimation(data.text);
-      setResult(response.data.result); // Supposons que l'API renvoie un champ "result"
+      const response = await postEstimation(formattedData);
+      setResult((response as { analysis: string }).analysis);
       reset();
     } catch (error) {
-      console.error("Erreur lors de l'analyse:", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -63,31 +88,33 @@ const Estimation = memo(() => {
         </div>
       )}
       <section className="container mx-auto py-12 px-6 space-y-10 mt-25">
-      
-      {/* Guide */}
-      <GuideSection title="Voir notre guide" steps={steps} />
+        {/* Guide */}
+        <GuideSection title="Voir notre guide" steps={steps} />
+
         {/* Annonce à estimer */}
-        <div className="p-6 border border-primary">
+        <div className="p-6 border bg-around">
           <h2 className="text-2xl font-bold text-primary mb-4">
             J'<span style={{ color: "var(--primary-color)" }}>estime</span>{" "}
             l'annonce
           </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name="text"
+              name="description"
               control={control}
               rules={{ required: "Ce champ est requis" }}
               render={({ field }) => (
                 <textarea
                   {...field}
-                  className="w-full p-4 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full text-classic p-4 mt-8 bg-plain-transp bg-around outline-none placeholder-secondary"
                   rows={6}
                   placeholder="Je dépose (copier/coller) l'annonce ici..."
-                />
+                ></textarea>
               )}
             />
-            {errors.text && (
-              <p className="text-red-500 text-sm">{errors.text.message}</p>
+            {errors.description && (
+              <p className="text-red-500 text-sm">
+                {errors.description.message}
+              </p>
             )}
             <button
               type="submit"
@@ -99,12 +126,12 @@ const Estimation = memo(() => {
         </div>
 
         {/* Résultat de l'estimation */}
-        <div className="p-6 border border-primary">
+        <div className="p-6 bg-around">
           <h2 className="text-2xl font-bold text-primary mb-4">
             Le <span style={{ color: "var(--primary-color)" }}>résultat</span>{" "}
             de l'estimation
           </h2>
-          <div className="bg-white p-4 rounded-lg min-h-[150px] flex items-center justify-center text-gray-500">
+          <div className="text-classic b-around px-6 py-4 min-h-[150px] flex items-center justify-start mt-8 bg-plain-transp">
             {result || "Le résultat apparaîtra ici..."}
           </div>
         </div>
