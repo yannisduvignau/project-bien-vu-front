@@ -39,6 +39,10 @@ p {
   padding: 0;
 }
 
+.text-classic {
+  color: var(--secondary-color);
+}
+
 h1,
 h2 {
   text-transform: uppercase;
@@ -109,8 +113,6 @@ p {
   cursor: pointer;
 }
 
-
-
 /* html, body { height: 100%; width: 100%; } */
 body { margin: 0; font-family: "Poppins", sans-serif; }
 
@@ -128,7 +130,7 @@ body { margin: 0; font-family: "Poppins", sans-serif; }
 /* *** TEXTES *** */
 
 .text-light {
-  color: #fff
+  color: #fff;
 }
 
 .text-night {
@@ -152,6 +154,10 @@ body { margin: 0; font-family: "Poppins", sans-serif; }
 
 .bg-plain {
   background-color: var(--primary-color);
+  border-radius: 35px;
+}
+
+.b-around {
   border-radius: 35px;
 }
 

@@ -2,10 +2,19 @@ import { postEstimation } from "@src/api/ia/estimationService";
 import { useAssistant } from "@src/hooks/assistant/AssistantContext";
 import { memo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import GuideSection from "../views/components/GuideSection";
 
 interface FormData {
   text: string;
 }
+
+const steps: { title: string; description: string }[] = [
+  { title: "Copiez", description: "Copiez une annonce immobilière (SeLoger, LeBonCoin, Century21...)" },
+  { title: "Sélectionnez", description: "Sélectionnez votre outil BienVu : Analyser / Estimer / Générer" },
+  { title: "Collez", description: 'Collez l\'annonce dans "Je dépose (copier/coller)"' },
+  { title: "Cliquez", description: "Cliquez sur envoyer l'annonce pour traiter votre demande" },
+  { title: "Résultat", description: "Tadam ! Le résultat apparaît généré par l'IA" },
+];
 
 const Estimation = memo(() => {
   const [result, setResult] = useState<string>("");
@@ -53,7 +62,10 @@ const Estimation = memo(() => {
           <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
         </div>
       )}
-      <section className="container mx-auto py-12 px-6 space-y-10 mt-36">
+      <section className="container mx-auto py-12 px-6 space-y-10 mt-25">
+      
+      {/* Guide */}
+      <GuideSection title="Voir notre guide" steps={steps} />
         {/* Annonce à estimer */}
         <div className="p-6 border border-primary">
           <h2 className="text-2xl font-bold text-primary mb-4">
