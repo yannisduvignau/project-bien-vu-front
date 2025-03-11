@@ -3,7 +3,8 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./theme/ThemeContext.js";
+import { ThemeProvider } from "./hooks/theme/ThemeContext.js";
+import { AssistantProvider } from "./hooks/assistant/AssistantContext.js";
 // import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // const queryClient = new QueryClient();
@@ -14,11 +15,13 @@ if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
       <ThemeProvider>
-        <BrowserRouter>
-          {/* <QueryClientProvider client={queryClient}> */}
+        <AssistantProvider>
+          <BrowserRouter>
+            {/* <QueryClientProvider client={queryClient}> */}
             <App />
-          {/* </QueryClientProvider> */}
-        </BrowserRouter>
+            {/* </QueryClientProvider> */}
+          </BrowserRouter>
+        </AssistantProvider>
       </ThemeProvider>
     </StrictMode>
   );

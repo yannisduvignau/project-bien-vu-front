@@ -1,6 +1,9 @@
 import { Route, Routes } from "react-router-dom"; // Importation de BrowserRouter
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { IRoute } from "@interfaces/types";
+// import { postAnalyse } from "@src/api/ia/analyseService";
+// import { postEstimation } from "@src/api/ia/estimationService";
+// import { postGeneration } from "@src/api/ia/generationService";
 
 // Chargement dynamique des composants
 const Analyse = lazy(() => import("@views/Analyse"));

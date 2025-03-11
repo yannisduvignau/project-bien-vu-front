@@ -3,11 +3,12 @@ import './App.css'
 import { ToastContainer } from 'react-toastify'
 import sun from "@public/img/sun.svg";
 import moon from "@public/img/moon.svg";
-import { useTheme } from "./theme/ThemeContext";
+import { useTheme } from "./hooks/theme/ThemeContext";
 import Header from "./views/components/Header";
 import BackToTop from "./views/components/BackToTop";
 import Footer from "./views/components/Footer";
 import { navLinks } from "./navLinks";
+import Assistant from "./views/Assitant";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -26,6 +27,7 @@ function App() {
           onClick={toggleTheme}
         />
       </div>
+      <Assistant />
       {/* Conteneur principal */}
       <div className="h-[93vh] overflow-auto px-10 pt-16 absolute">
         <ToastContainer

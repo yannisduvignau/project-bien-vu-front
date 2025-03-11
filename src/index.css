@@ -3,3 +3,83 @@
 section{
   @apply mx-auto lg:px-8 xl:max-w-6xl;
 }
+
+/* HEADER */
+
+.material-icons{
+  color:var(--secondary-color);
+}
+
+/* NAVBAR */
+
+.navbar{
+  @apply absolute top-full mt-2 right-0 min-w-40 p-2 bg-zinc-50/10 rounded-2xl ring-inset ring-1 ring-zinc-50/5 scale-90 isolate blur-sm opacity-0 invisible
+  transition-[opacity,transform,filter] md:static md:flex md:items-center md:mt-0 md:opacity-100 md:blur-none md:visible md:scale-100 backdrop-blur-2xl
+}
+
+.navbar.active{
+  @apply opacity-100 scale-100 blur-none visible
+}
+
+.nav-link>p{
+  color: var(--secondary-color);
+  @apply grid items-center h-9 md:px-7 px-3 tracking-wide transition-colors cursor-pointer
+}
+
+.nav-link:hover{
+  color: var(--hover-text-color);
+}
+
+.nav-link.active{
+  color: var(--background-color);
+  @apply duration-300
+}
+
+.navbar .active-box{
+  background-color: var(--secondary-color);
+  @apply absolute /* top-2 left-2 right-2*/ h-9 rounded-lg -z-10 transition-[top,left] duration-300
+}
+
+.navbar a {
+  position: relative;
+  text-decoration: none; /* Supprimer le soulignement par défaut */
+}
+
+.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 2px;
+  background-color: var(--secondary-color);
+}
+
+/* BUTTON */
+
+.btn-secondary{
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  @apply h-9 px-4 text-sm font-medium tracking-wide transition-colors cursor-pointer rounded-lg
+}
+
+.btn-tercery{
+  background-color: var(--background-color);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  @apply h-9 px-4 text-sm font-medium tracking-wide transition-colors cursor-pointer rounded-lg border-2
+}
+
+.btn-tercery:hover{
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+/* HOME */
+
+.number{
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  @apply flex-none flex items-center justify-center w-[45px] h-[45px] rounded-full text-2xl font-bold
+}

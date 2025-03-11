@@ -2,7 +2,7 @@
   --primary-color: #6c63ff;
   --secondary-color: #132540;
   --tercery-color: #efefef;
-  --background-color: #fff;
+  --background-color: #ffffff;
 }
 
 html {
@@ -27,7 +27,6 @@ html {
 
 body{
   background-color: var(--background-color);
-
 }
 
 h1,
@@ -85,7 +84,7 @@ h1 {
 
 h1,
 h2,
-.lang {
+.lang, .number, .separateur {
   font-family: "Lilita One", sans-serif;
 }
 
