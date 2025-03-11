@@ -9,6 +9,7 @@ import { IRoute } from "@interfaces/types";
 const Analyse = lazy(() => import("@views/Analyse"));
 const Estimation = lazy(() => import("@views/Estimation"));
 const Generation = lazy(() => import("@views/Generation"));
+const Contact = lazy(() => import("@views/Contact"));
 // const Traitements = lazy(() => import("@views/Traitements"));
 const Home = lazy(() => import("@views/Home"));
 const NotFound = lazy(() => import("@views/NotFound"));
@@ -18,6 +19,7 @@ export const routes: IRoute[] = [
   { path: "/analyse", element: <Analyse /> },
   { path: "/estimation", element: <Estimation /> },
   { path: "/generation", element: <Generation /> },
+  { path: "/contact", element: <Contact />},
   // { path: "/analyse", element: <Traitements handleTraitement={postAnalyse} title="Analyser l'annonce" buttonTitle="Analyser" resultTitle="Résultat de l'analyse"/> },
   // { path: "/estimation", element: <Traitements handleTraitement={postEstimation} title="Estimation de l'annonce" buttonTitle="Estimer" resultTitle="Résultat de l'estimation"/> },
   // { path: "/generation", element: <Traitements handleTraitement={postGeneration} title="Génération d'une annonce" buttonTitle="Générer" resultTitle="Résultat de la génération"/> },

@@ -32,7 +32,8 @@ body{
 h1,
 h2,
 h3,
-p {
+p, 
+label {
   color: var(--secondary-color);
   margin: 0;
   padding: 0;
@@ -204,4 +205,17 @@ footer nav li a:hover {
   color: #fefefe;
   opacity: 0.6;
   transform: translateY(-5px);
+}
+
+/* Contact Form */
+
+.contact-form input,
+.contact-form textarea {
+  color: var(--secondary-color);
+}
+
+.contact-form:focus,
+.contact-form *:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
