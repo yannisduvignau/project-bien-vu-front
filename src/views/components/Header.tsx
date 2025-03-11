@@ -61,6 +61,10 @@ const Header: React.FC<HeaderProps> = ({ pagesLinks }) => {
             <img src={menuIcon} alt="Menu" className="h-8 w-8" />
           </button>
         </div>
+
+        <Link to="/contact" className="btn btn-secondary max-md:hidden md:justify-self-end flex items-center hover:scale-105">
+          <p className="text-light">Contact</p>
+        </Link>
       </div>
 
       {isMobileMenuOpen && (
