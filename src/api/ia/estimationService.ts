@@ -1,10 +1,19 @@
 import { post } from "../apiService";
 
-export const postEstimation = async (data:any) => {
+export const postEstimationDescription = async (data:any) => {
   try {
-    return await post("/ia/estimation",data);
+    return await post("/ia/estimation/description",data);
   } catch (error) {
-    console.error("Error in postEstimation:", error);
+    console.error("Error in postEstimationDescription:", error);
+    throw error;
+  }
+};
+
+export const postEstimationURL = async (data:any) => {
+  try {
+    return await post("/ia/estimation/url",data);
+  } catch (error) {
+    console.error("Error in postEstimationURL:", error);
     throw error;
   }
 };
