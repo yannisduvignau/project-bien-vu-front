@@ -1,11 +1,15 @@
-import { memo, useState } from "react";
-import GuideSection from "../views/components/GuideSection";
-import { useAssistant } from "@src/hooks/assistant/AssistantContext";
+import React, { memo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { postAnalyse } from "@src/api/ia/analyseService";
+import { Play, AlertCircle } from "lucide-react";
+import GuideSection from "./components/GuideSection";
+import { postAnalyseDescription, postAnalyseURL } from "@src/api/ia/analyseService";
 
-interface FormData {
+interface FormDataDescription {
   description: string;
+}
+
+interface FormDataUrl {
+  url: string;
 }
 
 interface StepsProps {
@@ -38,106 +42,181 @@ const steps: StepsProps[] = [
   },
 ];
 
-const Analyse: React.FC = memo(() => {
+const App = memo(() => {
   const [result, setResult] = useState<string>("");
+  const [reliability, setReliability] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const { handleResizeAssistant, handleChangeBulleText } = useAssistant();
 
-  handleResizeAssistant(
-    "15vh",
-    "15vh",
-    [0.8, -0.3, 1.5],
-    22,
-    "right-6",
-    "bottom-16"
-  );
-  // handleChangeBulleText("🚀 Analyse tes annonces immobilières ici ! 🚀");
-
+  // Formulaire URL
   const {
-    handleSubmit,
-    formState: { errors },
-    control,
-    reset,
-  } = useForm<FormData>({
+    handleSubmit: handleSubmitUrl,
+    formState: { errors: errorsUrl },
+    control: controlUrl,
+  } = useForm<FormDataUrl>({
+    defaultValues: {
+      url: "",
+    },
+  });
+
+  // Formulaire Description
+  const {
+    handleSubmit: handleSubmitDescription,
+    formState: { errors: errorsDescription },
+    control: controlDescription,
+  } = useForm<FormDataDescription>({
     defaultValues: {
       description: "",
     },
   });
 
-  const onSubmit = async (data: FormData) => {
-      setLoading(true);
-      const formattedData = {
-        ...data,
-      };
-      try {
-        const response = await postAnalyse(formattedData);
-        setResult((response as { analysis: string }).analysis);
-        reset();
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
+  const onSubmitUrl = async (data: FormDataUrl) => {
+    setResult("");
+    setReliability("");
+    setLoading(true);
+    const formattedData = {
+      ...data,
     };
+    try {
+      const response = await postAnalyseURL(formattedData);
+      setResult((response as { analysis: string }).analysis);
+      setReliability((response as { reliability: string }).reliability);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSubmitDescription = async (data: FormDataDescription) => {
+    setResult("");
+    setReliability("");
+    setLoading(true);
+    const formattedData = {
+      ...data,
+    };
+    try {
+      const response = await postAnalyseDescription(formattedData);
+      setResult((response as { analysis: string }).analysis);
+      setReliability((response as { reliability: string }).reliability);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <>
+    <div className="min-h-screen text-white mt-25">
       {loading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
-          <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
+        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+          <div className="w-16 h-16 border-4 border-[#132540] border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
-      <section className="container mx-auto py-12 px-6 space-y-10 mt-25">
+
+      <div className="container mx-auto px-6 py-12">
         {/* Guide */}
         <GuideSection title="Voir notre guide" steps={steps} />
 
-        {/* Annonce à analyser */}
-        <div className="p-6 border bg-around">
-          <h2 className="text-2xl font-bold text-primary mb-4">
-            J'<span style={{ color: "var(--primary-color)" }}>analyse</span>{" "}
-            l'annonce
-          </h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-              name="description"
-              control={control}
-              rules={{ required: "Ce champ est requis" }}
-              render={({ field }) => (
-                <textarea
-                  {...field}
-                  className="w-full text-classic p-4 mt-8 bg-plain-transp bg-around outline-none placeholder-secondary"
-                  rows={6}
-                  placeholder="Je dépose (copier/coller) l'annonce ici..."
-                ></textarea>
-              )}
-            />
-            {errors.description && (
-              <p className="text-red-500 text-sm">
-                {errors.description.message}
-              </p>
-            )}
-            <button
-              type="submit"
-              className="btn btn-secondary w-fit flex items-center !mt-8"
-            >
-              <p className="text-light">Analyser</p>
-            </button>
-          </form>
-        </div>
+        {/* FORMULAIRES */}
+        <div className="flex gap-10 justify-between mt-10">
+          {/* Formulaire URL */}
+          <div className="bg-[var(--primary-color)] rounded-lg p-8 mb-12">
+            <h2 className="text-3xl font-bold !mb-6 !text-white">
+              Analyser une annonce à l'aide d'une URL
+            </h2>
+            <form onSubmit={handleSubmitUrl(onSubmitUrl)} className="space-y-6">
+              <Controller
+                name="url"
+                control={controlUrl}
+                rules={{ required: "Ce champ est requis" }}
+                render={({ field }) => (
+                  <div>
+                    <input
+                      {...field}
+                      className="w-full bg-[var(--background-color)] text-[var(--secondary-color)] rounded-lg p-4 focus:ring-2 focus:ring-[#132540] focus:outline-none"
+                      placeholder="Collez votre URL ici..."
+                    />
+                    {errorsUrl.url && (
+                      <p className="mt-2 !text-white flex items-center">
+                        <AlertCircle size={16} className="mr-2" />
+                        {errorsUrl.url.message}
+                      </p>
+                    )}
+                  </div>
+                )}
+              />
+              <button
+                type="submit"
+                className="bg-[#132540] text-white px-8 py-3 rounded-lg font-semibold flex items-center hover:bg-[#132540] transition-colors duration-300"
+              >
+                <Play size={20} className="mr-2" />
+                Lancer l'analyse
+              </button>
+            </form>
+          </div>
 
-        {/* Le résultat de l'analyse */}
-        <div className="p-6 bg-around">
-          <h2 className="text-2xl font-bold text-primary mb-4">
-            Le <span style={{ color: "var(--primary-color)" }}>résultat</span>{" "}
-            de l'analyse
-          </h2>
-          <div className="text-classic b-around px-6 py-4 min-h-[150px] flex items-center justify-start mt-8 bg-plain-transp">
-            {result || "Le résultat apparaîtra ici..."}
+          {/* Formulaire Description */}
+          <div className="bg-[var(--primary-color)] rounded-lg p-8 mb-12 w-full">
+            <h2 className="text-3xl font-bold !mb-6 !text-white">
+              Analyser une annonce à l'aide de la description
+            </h2>
+            <form
+              onSubmit={handleSubmitDescription(onSubmitDescription)}
+              className="space-y-6"
+            >
+              <Controller
+                name="description"
+                control={controlDescription}
+                rules={{ required: "Ce champ est requis" }}
+                render={({ field }) => (
+                  <div>
+                    <textarea
+                      {...field}
+                      className="w-full bg-[var(--background-color)] text-[var(--secondary-color)] rounded-lg p-4 min-h-[200px] focus:ring-2 focus:ring-[#132540] focus:outline-none"
+                      placeholder="Collez votre description ici..."
+                    />
+                    {errorsDescription.description && (
+                      <p className="mt-2 !text-white flex items-center">
+                        <AlertCircle size={16} className="mr-2" />
+                        {errorsDescription.description.message}
+                      </p>
+                    )}
+                  </div>
+                )}
+              />
+              <button
+                type="submit"
+                className="bg-[#132540] text-white px-8 py-3 rounded-lg font-semibold flex items-center hover:bg-[#132540] transition-colors duration-300"
+              >
+                <Play size={20} className="mr-2" />
+                Lancer l'analyse
+              </button>
+            </form>
           </div>
         </div>
-      </section>
-    </>
+
+        {/* Résultats */}
+        {(result || reliability) && (
+          <div className="bg-[var(--primary-color)] rounded-lg p-8">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold !text-white">Résultats</h2>
+              {reliability && (
+                <div className="bg-[var(--background-color)] px-4 py-2 rounded-lg">
+                  <span className="text-gray-400">Fiabilité: </span>
+                  <span className="text-[var(--secondary-color)] font-semibold">
+                    {reliability}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="bg-[var(--background-color)] rounded-lg p-6">
+              <p className="text-gray-300 whitespace-pre-line">{result}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 });
 
-export default Analyse;
+export default App;

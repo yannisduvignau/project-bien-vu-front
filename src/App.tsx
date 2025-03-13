@@ -27,7 +27,7 @@ function App() {
           onClick={toggleTheme}
         />
       </div>
-      <Assistant />
+      {/* <Assistant /> */}
       {/* Conteneur principal */}
       <div className="h-[93vh] overflow-auto px-10 pt-16 absolute">
         <ToastContainer
