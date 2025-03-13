@@ -1,5 +1,6 @@
 :root {
   --primary-color: #6c63ff;
+  --primary-color-hover: #3b34b9;
   --secondary-color: #132540;
   --tercery-color: #efefef;
   --background-color: #ffffff;
@@ -11,6 +12,7 @@ html {
 
 [data-theme="dark"] {
   --primary-color: #6c63ff;
+  --primary-color-hover: #3b34b9;
   --secondary-color: #efefef;
   --tercery-color: #fff;
   --background-color: #132540;
@@ -32,7 +34,8 @@ body{
 h1,
 h2,
 h3,
-p {
+p, 
+label {
   color: var(--secondary-color);
   margin: 0;
   padding: 0;
@@ -204,4 +207,17 @@ footer nav li a:hover {
   color: #fefefe;
   opacity: 0.6;
   transform: translateY(-5px);
+}
+
+/* Contact Form */
+
+.contact-form input,
+.contact-form textarea {
+  color: var(--secondary-color);
+}
+
+.contact-form:focus,
+.contact-form *:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }

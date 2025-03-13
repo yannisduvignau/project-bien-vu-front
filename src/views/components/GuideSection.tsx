@@ -33,27 +33,26 @@ const GuideSection: React.FC<GuideSectionProps> = ({ title = "Voir notre guide",
           isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="p-6 bg-around mt-4 rounded-lg shadow-lg">
-          <h3 className="text-xl font-bold text-primary mb-4">Guide étape par étape</h3>
-
-          <div className="space-y-4 mt-5">
-            {filteredSteps.map((step, index) => (
-              <div 
-                key={index} 
-                className="flex items-center gap-4 bg-around p-3 rounded-lg mx-auto max-w-[600px]"
+        {/* Guide Steps */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold !mb-8 text-[#132540]">
+            Comment ça marche
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {steps.slice(0, 3).map((step, index) => (
+              <div
+                key={index}
+                className="bg-[var(--primary-color)] p-6 rounded-lg hover:bg-[var(--primary-color-hover)] transition-colors duration-300"
               >
-                {/* Numéro*/}
-                <div className="number flex items-center justify-center w-[45px] h-[45px] rounded-full bg-primary text-2xl font-bold bg-dot">
-                  <span>{index + 1}</span>
-                </div>
-
-                {/* Texte */}
-                <div className="step-text flex-1 text-center">
-                  <h3 className="text-lg font-bold">
-                    <span className="text-exerg uppercase">{step.title}</span>
+                <div className="flex items-center mb-4">
+                  <span className="text-[#132540] text-xl font-bold mr-2">
+                    {index + 1}
+                  </span>
+                  <h3 className="text-xl font-semibold !text-white">
+                    {step.title}
                   </h3>
-                  <p className="text-sm">{step.description}</p>
                 </div>
+                <p className="!text-white">{step.description}</p>
               </div>
             ))}
           </div>

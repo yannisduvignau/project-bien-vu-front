@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ pagesLinks }) => {
           <Navbar navOpen={navOpen} pagesLinks={pagesLinks} />
         </div>
 
-        <Link to="/" className="btn btn-secondary max-md:hidden md:justify-self-end flex items-center hover:scale-105">
+        <Link to="/contact" className="btn btn-secondary max-md:hidden md:justify-self-end flex items-center hover:scale-105">
           <p className="text-light">Contact</p>
         </Link>
       </div>
