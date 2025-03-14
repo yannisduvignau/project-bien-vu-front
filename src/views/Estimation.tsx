@@ -133,38 +133,15 @@ const Estimation = memo(() => {
   return (
     <div className="min-h-screen text-white mt-25">
       {loading && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
-          <div className="w-16 h-16 border-4 border-[#132540] border-t-transparent rounded-full animate-spin"></div>
+        <div className="fixed inset-0 bg-[var(--background-color)] bg-opacity-100 flex items-center justify-center z-30">
+          <div className="w-16 h-16 border-4 border-[var(--secondary-color)] border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
       <div className="container mx-auto px-6 py-12">
         {/* Guide */}
         <GuideSection title="Voir notre guide" steps={steps} />
-        {/* Guide Steps */}
-        {/* <div className="mb-16">
-          <h2 className="text-3xl font-bold !mb-8 text-[#132540]">
-            Comment ça marche
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {steps.slice(0, 3).map((step, index) => (
-              <div
-                key={index}
-                className="bg-[var(--primary-color)] p-6 rounded-lg hover:bg-[var(--primary-color-hover)] transition-colors duration-300"
-              >
-                <div className="flex items-center mb-4">
-                  <span className="text-[#132540] text-xl font-bold mr-2">
-                    {index + 1}
-                  </span>
-                  <h3 className="text-xl font-semibold !text-white">
-                    {step.title}
-                  </h3>
-                </div>
-                <p className="!text-white">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div> */}
+
 
         {/* FORMULAIRES */}
         <div className="flex gap-10 justify-between mt-10">

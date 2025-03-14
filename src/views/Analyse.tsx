@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import { memo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Play, AlertCircle } from "lucide-react";
 import GuideSection from "./components/GuideSection";
@@ -108,8 +108,8 @@ const App = memo(() => {
   return (
     <div className="min-h-screen text-white mt-25">
       {loading && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
-          <div className="w-16 h-16 border-4 border-[#132540] border-t-transparent rounded-full animate-spin"></div>
+        <div className="fixed inset-0 bg-[var(--background-color)] bg-opacity-100 flex items-center justify-center z-30">
+          <div className="w-16 h-16 border-4 border-[var(--secondary-color)] border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 

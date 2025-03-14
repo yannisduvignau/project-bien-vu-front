@@ -15,7 +15,7 @@ interface GuideSectionProps {
 const GuideSection: React.FC<GuideSectionProps> = ({ title = "Voir notre guide", steps }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const filteredSteps = steps.filter((_, index) => index !== 1);
+  // const filteredSteps = steps.filter((_, index) => index !== 1);
 
   return (
     <div className="text-center">
