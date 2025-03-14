@@ -1,50 +1,87 @@
-# React + TypeScript + Vite
+# React Frontend BienVu App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description du projet
+Ce projet est une application frontend construite avec React et Tailwind CSS. Il est conçu pour offrir une interface utilisateur moderne, rapide et réactive. Ce projet est compatible avec les API REST et peut être facilement intégré à n'importe quel backend.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prérequis
+Avant d'installer le projet, assurez-vous d'avoir les éléments suivants installés sur votre machine :
+- Node.js (>= 16.x)
+- npm (ou yarn)
 
-## Expanding the ESLint configuration
+### Étapes d'installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **Cloner le dépôt**
+   ```bash
+   git clone https://github.com/Ecole-de-Turing/BienVu-front.git
+   cd BienVu-front
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+2. **Installer les dépendances**
+   ```bash
+   npm install
+   ```
+   ou avec Yarn :
+   ```bash
+   yarn install
+   ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
+3. **Lancer l'application en mode développement**
+   ```bash
+   npm run dev
+   ```
+   ou avec Yarn :
+   ```bash
+   yarn dev
+   ```
+   L'application sera accessible sur `http://localhost:5173`
+
+## Configuration de Tailwind CSS
+Tailwind CSS est déjà configuré dans le projet. Si besoin, voici comment l'installer manuellement :
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+Ensuite, ajoutez la configuration suivante dans `tailwind.config.js` :
+```javascript
+module.exports = {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
   },
-})
+  plugins: [],
+};
+```
+Et ajoutez Tailwind dans `src/index.css` :
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## Structure du projet
 ```
+├── src/
+│   ├── assets/          # Fichiers statiques (images, icônes...)
+│   ├── views/           # Composants réutilisables
+│   ├── pages/           # Pages principales de l'application
+│   ├── routes/          # Configuration des routes
+│   ├── hooks/           # Hooks personnalisés
+│   ├── interface/       # Types typescript
+│   ├── services/        # Gestion des appels API
+│   ├── styles/          # Fichiers CSS globaux
+│   ├── App.jsx          # Point d'entrée de l'application
+│   ├── main.jsx         # Initialisation de React
+│   └── index.css        # Styles globaux avec Tailwind
+├── public/              # Fichiers statiques accessibles publiquement
+├── package.json         # Dépendances et scripts
+├── tailwind.config.js   # Configuration de Tailwind CSS
+└── vite.config.js       # Configuration de Vite
+```
+
+## Contributeurs
+
+- **Paul Banchon** - [GitHub](https://github.com/P0B0CK)
+- **Yannis Duvignau** - [GitHub](https://github.com/yannisduvignau)
+
