@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import { memo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Play, AlertCircle } from "lucide-react";
 import GuideSection from "./components/GuideSection";

@@ -8,7 +8,7 @@ import Header from "./views/components/Header";
 import BackToTop from "./views/components/BackToTop";
 import Footer from "./views/components/Footer";
 import { navLinks } from "./navLinks";
-import Assistant from "./views/Assitant";
+// import Assistant from "./views/Assitant";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
